@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hospital Navigator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hospital Navigator</h1>
+
+    <form method="post" action="" onsubmit="{submitForm()}">
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" name="destination" required />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <div id="map">{{ map_html | safe }}</div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      function submitForm(e) {
+        e.preventDefault();
+
+        var map = L.map("map").setView(
+          [49.49226339787344, 8.487303256988524],
+          17
+        );
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+      }
+
+      // Add your path and building here
+    </script>
+  </body>
+</html>
